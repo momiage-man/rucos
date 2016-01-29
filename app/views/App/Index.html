@@ -1,0 +1,25 @@
+{{set . "title" "Home"}}
+{{template "header.html" .}}
+
+
+<!-- 登録処理 -->
+<form action="/user_post" method="post">
+  <input type="text" name="name" />
+  <input type="submit" value="submit!!" />
+</form>
+
+
+<!-- 削除処理 -->
+{{range .users}}
+<p>
+  name: {{.Name}}
+  <form method="post" action="/delete">
+    <!-- deleteメソッドが仮引数がidなので、name属性はidという名前で設定しておく -->
+    <input type="hidden" name="id" value="{{.Id}}">
+    <input type="submit" value="削除" />
+  </form>
+</p>
+
+{{ end }}
+
+{{template "footer.html" .}}
